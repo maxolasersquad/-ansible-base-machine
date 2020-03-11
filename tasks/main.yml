@@ -22,3 +22,14 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+
+- name: Add docker group
+  group:
+    name: docker
+
+- name: Add docker users
+  user:
+    name: "{{ item }}"
+    group: docker
+    append: yes
+  with_items: "{{ users }}"
